@@ -6,10 +6,10 @@
 " URL:          http://github.com/nvie/vim-pyflakes
 "
 " Only do this when not done yet for this buffer
-if exists("b:did_ftplugin")
+if exists("b:loaded_pyflakes_ftplugin")
     finish
 endif
-let b:did_ftplugin = 1
+let b:loaded_pyflakes_ftplugin=1
 
 let s:pyflakes_cmd="pyflakes"
 
