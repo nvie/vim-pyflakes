@@ -32,7 +32,7 @@ function Pyflakes()
     endif
 
     " perform the grep itself
-    let &grepformat="%f:%l:%m"
+    let &grepformat="%f:%l: %m"
     let &grepprg=s:pyflakes_cmd
     silent! grep! %
 
