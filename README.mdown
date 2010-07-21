@@ -17,4 +17,4 @@ If you don't want to use the `<F7>` key for pyflakes-checking, simply remap it t
 another key.  It autodetects whether it has been remapped and won't register
 the `<F7>` key if so.  For example, to remap it to `<F3>` instead, use:
 
-    autocmd FileType python map <buffer> <F3> :call pyflakes()<CR>
+    autocmd FileType python map <buffer> <F3> :call Pyflakes()<CR>
