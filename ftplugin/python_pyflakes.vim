@@ -13,52 +13,54 @@ let b:loaded_pyflakes_ftplugin=1
 
 let s:pyflakes_cmd="pyflakes"
 
-function Pyflakes()
-    if !executable(s:pyflakes_cmd)
-        echoerr "File " . s:pyflakes_cmd . " not found. Please install it first."
-        return
-    endif
+if !exists("*Pyflakes()")
+    function Pyflakes()
+        if !executable(s:pyflakes_cmd)
+            echoerr "File " . s:pyflakes_cmd . " not found. Please install it first."
+            return
+        endif
 
-    set lazyredraw   " delay redrawing
-    cclose           " close any existing cwindows
+        set lazyredraw   " delay redrawing
+        cclose           " close any existing cwindows
 
-    " store old grep settings (to restore later)
-    let l:old_gfm=&grepformat
-    let l:old_gp=&grepprg
+        " store old grep settings (to restore later)
+        let l:old_gfm=&grepformat
+        let l:old_gp=&grepprg
 
-    " write any changes before continuing
-    if &readonly == 0
-        update
-    endif
+        " write any changes before continuing
+        if &readonly == 0
+            update
+        endif
 
-    " perform the grep itself
-    let &grepformat="%f:%l: %m"
-    let &grepprg=s:pyflakes_cmd
-    silent! grep! %
+        " perform the grep itself
+        let &grepformat="%f:%l: %m"
+        let &grepprg=s:pyflakes_cmd
+        silent! grep! %
 
-    " restore grep settings
-    let &grepformat=l:old_gfm
-    let &grepprg=l:old_gp
+        " restore grep settings
+        let &grepformat=l:old_gfm
+        let &grepprg=l:old_gp
 
-    " open cwindow
-    let has_results=getqflist() != []
-    if has_results
-        execute 'belowright copen'
-        nnoremap <buffer> <silent> c :cclose<CR>
-        nnoremap <buffer> <silent> q :cclose<CR>
-    endif
+        " open cwindow
+        let has_results=getqflist() != []
+        if has_results
+            execute 'belowright copen'
+            nnoremap <buffer> <silent> c :cclose<CR>
+            nnoremap <buffer> <silent> q :cclose<CR>
+        endif
 
-    set nolazyredraw
-    redraw!
+        set nolazyredraw
+        redraw!
 
-    if has_results == 0
-        " Show OK status
-        hi Green ctermfg=green
-        echohl Green
-        echon "Static analysis OK"
-        echohl
-    endif
-endfunction
+        if has_results == 0
+            " Show OK status
+            hi Green ctermfg=green
+            echohl Green
+            echon "Static analysis OK"
+            echohl
+        endif
+    endfunction
+endif
 
 " Add mappings, unless the user didn't want this.
 " The default mapping is registered under to <F7> by default, unless the user
