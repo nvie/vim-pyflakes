@@ -20,3 +20,12 @@ another key.  It autodetects whether it has been remapped and won't register
 the `<F7>` key if so.  For example, to remap it to `<F3>` instead, use:
 
     autocmd FileType python map <buffer> <F3> :call Pyflakes()<CR>
+
+
+Tips
+----
+This plugin goes well together with the following plugins:
+
+- [PEP8](http://github.com/nvie/vim-pep8) (Python coding style checker under `<F6>`)
+- [PyUnit](http://github.com/nvie/vim-pyunit) (unit test helper under `<F8>`
+  and `<F9>`)
