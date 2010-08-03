@@ -24,6 +24,13 @@ the `<F7>` key if so.  For example, to remap it to `<F3>` instead, use:
 
 Tips
 ----
+A tip might be to run the Pyflakes check every time you write a Python file, to
+enable this, add the following line to your `.vimrc` file (thanks
+[Godefroid](http://github.com/gotcha)!):
+
+    autocmd BufWritePost *.py call Pyflakes()
+
+
 This plugin goes well together with the following plugins:
 
 - [PEP8](http://github.com/nvie/vim-pep8) (Python coding style checker under `<F6>`)
