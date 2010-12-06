@@ -1,3 +1,6 @@
+vim-pyflakes ![Project status](http://stillmaintained.com/nvie/vim-pyflakes.png)
+============
+
 Installation
 ------------
 1. Install [pyflakes](http://pypi.python.org/pypi/pyflakes/)
